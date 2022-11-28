@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Season_ID: 
+  Season_name: MyString
+  Shortened_season_name: MyString
+
+two:
+  Season_ID: 
+  Season_name: MyString
+  Shortened_season_name: MyString
