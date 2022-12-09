@@ -12,8 +12,13 @@ seasons = Array[Season]
   seasons.append(Season.create(Season_name: '202' + a.to_s + '/202' + (a + 1).to_s, Shortened_season_name: '2' + a.to_s + '/2' + (a + 1).to_s))
 }
 
-# TEAMS
+# TEAMS & PLAYERS
 teams = Array[Team]
+players = Array[Player]
+
 10.times do
-  teams.append(Team.create(Team_name: team1 = Faker::Team.name, Shortened_team_name: team1[0, 2].upcase + team1.reverse[0, 1].upcase))
+  teams.append(Team.create(Team_name: team1 = Faker::Team.name , Shortened_team_name: team1[0, 2].upcase + team1.reverse[0, 1].upcase))
+  10.times do
+  players.append(Player.create(name: Faker::Name.first_name, surname: Faker::Name.last_name , team_id: Team.last.id ))
+  end
 end
