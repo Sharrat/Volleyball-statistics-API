@@ -43,12 +43,12 @@ end
 
 # TOURNAMENT_STAGES
 
-tournament_stages = Array[Tournament_stage]
+tournament_stages = Array[TournamentStage]
 
 for i in 1..(Tournament.count) do
-  tournament_stages.append(Tournament.create(tournament_name: "Preliminary round", season_id: i))
-  tournament_stages.append(Tournament.create(tournament_name: "Quarterfinals", season_id: i))
-  tournament_stages.append(Tournament.create(tournament_name: "Semifinals", season_id: i))
-  tournament_stages.append(Tournament.create(tournament_name: "Bronze-medal game", season_id: i))
-  tournament_stages.append(Tournament.create(tournament_name: "Gold-medal game", season_id: i))
+  tournament_stages.append(TournamentStage.create(stage_name: "Preliminary round", tournament_id: i))
+  tournament_stages.append(TournamentStage.create(stage_name: "Quarterfinals", tournament_id: i))
+  tournament_stages.append(TournamentStage.create(stage_name: "Semifinals", tournament_id: i))
+  tournament_stages.append(TournamentStage.create(stage_name: "Bronze-medal game", tournament_id: i))
+  tournament_stages.append(TournamentStage.create(stage_name: "Gold-medal game", tournament_id: i))
 end
