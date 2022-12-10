@@ -10,9 +10,70 @@ module Api
         if Tournament.exists?(params[:id])
           tournament = Tournament.find(params[:id])
           season = Season.find(tournament.season_id)
-          render json: {status: 'SUCCESS', message:'Loaded tournament',
-                        data:{"id": tournament.id, "Tournament name": tournament.Tournament_name, "Season": season}},status: :ok
+          render json: {status: 'SUCCESS', message:'Tournament loaded',
+                        data:{"id": tournament.id, "Tournament_name": tournament.Tournament_name,
+                          Season: {"id": season.id, "Season_name": season.Season_name, "Shortened_season_name": season.Shortened_season_name}}},status: :ok
+        else
+          render json: {status: 'ERROR', message:'Tournament not found'}
         end
+      end
+
+      def create
+        tournament = Tournament.new(tournament_params)
+
+        if Season.exists?(params[:season_id])
+          season = Season.find(params[:season_id])
+          if tournament.save
+            render json: {status: 'SUCCESS', message:'Tournament saved',
+                          data:{"id": tournament.id, "Tournament_name": tournament.Tournament_name, "season_id": season.id}}
+          else
+            if Tournament.exists?(Tournament_name: params[:Tournament_name], season_id: params[:season_id])
+              render json: {status: 'ERROR', message:'Tournament already exists'}
+            else
+              render json: {status: 'ERROR', message:'Tournament not saved'}
+            end
+          end
+        else
+          render json: {status: 'ERROR', message:'Season not found'}
+        end
+      end
+
+      def destroy
+        if Tournament.exists?(params[:id])
+          tournament = Tournament.find(params[:id])
+          if tournament.destroy
+            render json: {status: 'SUCCESS', message:'Tournament deleted'}
+          else
+            render json: {status: 'ERROR', message:'Tournament not deleted'}
+          end
+        else
+          render json: {status: 'ERROR', message:'Tournament not found'}
+        end
+      end
+
+      def update
+        if Tournament.exists?(params[:id])
+          if Season.exists?(params[:season_id])
+            tournament = Tournament.find(params[:id])
+            season = Season.find(params[:season_id])
+            if tournament.update(tournament_params)
+              render json: {status: 'SUCCESS', message:'Tournament updated',
+                            data:{"id": tournament.id, "Tournament_name": tournament.Tournament_name, "season_id": season.id}}
+            else
+              render json: {status: 'ERROR', message:'Tournament not updated'}
+            end
+          else
+            render json: {status: 'ERROR', message:'Season not found'}
+          end
+        else
+          render json: {status: 'ERROR', message:'Tournament not found'}
+        end
+      end
+
+      private
+
+      def tournament_params
+        params.permit(:Tournament_name, :season_id)
       end
     end
   end

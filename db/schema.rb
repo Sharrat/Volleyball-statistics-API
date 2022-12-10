@@ -26,10 +26,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_06_081703) do
   end
 
   create_table "tournaments", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
-    t.string "Tournament_name"
+    t.string "Tournament_name", null: false
     t.bigint "season_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["Tournament_name", "season_id"], name: "index_tournaments_on_Tournament_name_and_season_id", unique: true
     t.index ["season_id"], name: "index_tournaments_on_season_id"
   end
 
