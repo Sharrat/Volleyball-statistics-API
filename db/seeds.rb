@@ -39,20 +39,20 @@ while tournaments_loop < 10 and tournaments_max_loop < 100
   else
     tournaments_max_loop += 1
   end
+end
 
-  #USERS
-  users = Array[User]
+#USERS
+users = Array[User]
 
-  5.times do
-    username = Faker::Name.name
+5.times do
+username = Faker::Name.name
 
-    if not User.exists?(username)
-      users.append(
-        User.create(
-          username: username,
-          password: Faker::Blockchain::Tezos.account,
-          is_admin: random_boolean = [true, false].sample
-          )
+if not User.exists?(username)
+  users.append(
+    User.create(
+      username: username,
+      password: Faker::Blockchain::Tezos.account,
+      is_admin: random_boolean = [true, false].sample
       )
-      
+  )
 end

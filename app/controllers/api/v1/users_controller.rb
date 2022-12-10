@@ -24,6 +24,25 @@ module Api
           end
       end
 
+      def destroy
+        if User.exists?(params[:id])
+          user = User.find(params[:id])
+          user.destroy
+          render json: {status: 'SUCCESS', message:'Deleted user', data:user},status: :ok
+        else
+          render json: {status: 'ERROR', message:'User not found', data:user.errors},status: :unprocessable_entity
+        end
+      end
+
+      def update
+        user = User.find(params[:id])
+        if user.update(user_params)
+          render json: {status: 'SUCCESS', message:'Updated user', data:user},status: :ok
+        else
+          render json: {status: 'ERROR', message:'User not updated', data:user.errors},status: :unprocessable_entity
+        end
+      end
+
       private
         def user_params
           params.permit(:username, :password, :is_admin)

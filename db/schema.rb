@@ -54,6 +54,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_10_153142) do
     t.index ["team_id"], name: "index_tournament_teams_on_team_id"
   end
 
+  create_table "tournaments", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.string "tournament_name", null: false
+    t.bigint "season_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["season_id"], name: "index_tournaments_on_season_id"
+    t.index ["tournament_name", "season_id"], name: "index_tournaments_on_tournament_name_and_season_id", unique: true
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "username", null: false
     t.string "password", null: false
@@ -65,15 +74,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_10_153142) do
   add_foreign_key "players", "teams"
   add_foreign_key "season_ownerships", "seasons"
   add_foreign_key "tournament_teams", "teams"
+  add_foreign_key "tournaments", "seasons"
 end
-
-create_table "tournaments", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
-  t.string "tournament_name", null: false
-  t.bigint "season_id"
-  t.datetime "created_at", null: false
-  t.datetime "updated_at", null: false
-  t.index ["season_id"], name: "index_tournaments_on_season_id"
-  t.index ["tournament_name", "season_id"], name: "index_tournaments_on_Tournament_name_and_season_id", unique: true
-end
-
-add_foreign_key "tournaments", "seasons"
