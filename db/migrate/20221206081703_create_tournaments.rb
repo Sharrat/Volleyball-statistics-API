@@ -6,6 +6,6 @@ class CreateTournaments < ActiveRecord::Migration[7.0]
       #t.index
       t.timestamps
     end
-    add_index :tournaments, [:Tournament_name, :season_id], unique: true
+    add_index :tournaments, [:tournament_name, :season_id], unique: true
   end
 end
