@@ -10,19 +10,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_28_010652) do
-  create_table "seasons", charset: "utf8mb4", force: :cascade do |t|
+ActiveRecord::Schema[7.0].define(version: 2022_12_05_222348) do
+  create_table "players", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.string "name"
+    t.string "surname"
+    t.bigint "team_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_players_on_team_id"
+  end
+
+  create_table "season_ownerships", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.bigint "season_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["season_id"], name: "index_season_ownerships_on_season_id"
+  end
+
+  create_table "seasons", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "Season_name"
     t.string "Shortened_season_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "teams", charset: "utf8mb4", force: :cascade do |t|
+  create_table "teams", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "Team_name"
     t.string "Shortened_team_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "tournament_teams", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.bigint "team_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_tournament_teams_on_team_id"
+  end
+
+  add_foreign_key "players", "teams"
+  add_foreign_key "season_ownerships", "seasons"
+  add_foreign_key "tournament_teams", "teams"
 end
+
+create_table "tournaments", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  t.string "tournament_name", null: false
+  t.bigint "season_id"
+  t.datetime "created_at", null: false
+  t.datetime "updated_at", null: false
+  t.index ["season_id"], name: "index_tournaments_on_season_id"
+  t.index ["tournament_name", "season_id"], name: "index_tournaments_on_Tournament_name_and_season_id", unique: true
+end
+
+add_foreign_key "tournaments", "seasons"
