@@ -17,3 +17,15 @@ teams = Array[Team]
 10.times do
   teams.append(Team.create(Team_name: team1 = Faker::Team.name, Shortened_team_name: team1[0, 2].upcase + team1.reverse[0, 1].upcase))
 end
+
+# TOURNAMENT_STAGES
+
+tournament_stages = Array[Tournament_stage]
+
+for i in 1..(Tournament.count) do
+  tournament_stages.append(Tournament.create(tournament_name: "Preliminary round", season_id: i))
+  tournament_stages.append(Tournament.create(tournament_name: "Quarterfinals", season_id: i))
+  tournament_stages.append(Tournament.create(tournament_name: "Semifinals", season_id: i))
+  tournament_stages.append(Tournament.create(tournament_name: "Bronze-medal game", season_id: i))
+  tournament_stages.append(Tournament.create(tournament_name: "Gold-medal game", season_id: i))
+end

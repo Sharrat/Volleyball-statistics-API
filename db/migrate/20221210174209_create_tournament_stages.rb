@@ -1,8 +1,8 @@
 class CreateTournamentStages < ActiveRecord::Migration[7.0]
   def change
     create_table :tournament_stages do |t|
-      t.string :stage_name
-      t.belongs_to :turnament, foreign_key: true
+      t.string :stage_name, null: false
+      t.belongs_to :tournament, foreign_key: true
 
       t.timestamps
     end
