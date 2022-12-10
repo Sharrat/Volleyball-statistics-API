@@ -23,19 +23,36 @@ players = Array[Player]
   end
 end
 
-#USERS
-users = Array[User]
+# TOURNAMENT
+tournaments = Array[Tournament]
+tournaments_loop = 0
+tournaments_max_loop = 0
 
-5.times do
-  username = Faker::Name.name
+while tournaments_loop < 10 and tournaments_max_loop < 100
+  random_season = Season.all.sample
+  random_name = Faker::WorldCup.group + ' Volleyball Cup'# + random_season.Season_name
 
-  if not User.exists?(username)
-    users.append(
-      User.create(
-        username: username,
-        password: Faker::Blockchain::Tezos.account,
-        is_admin: random_boolean = [true, false].sample
-        )
-    )
+  if not Tournament.exists?(tournament_name: random_name, season_id: random_season.id)
+    tournaments.append(Tournament.create(tournament_name: random_name, season_id: random_season.id))
+    tournaments_loop += 1
+    tournaments_max_loop = 0
+  else
+    tournaments_max_loop += 1
   end
+
+  #USERS
+  users = Array[User]
+
+  5.times do
+    username = Faker::Name.name
+
+    if not User.exists?(username)
+      users.append(
+        User.create(
+          username: username,
+          password: Faker::Blockchain::Tezos.account,
+          is_admin: random_boolean = [true, false].sample
+          )
+      )
+      
 end
