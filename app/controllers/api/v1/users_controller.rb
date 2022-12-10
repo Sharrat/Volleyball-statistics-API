@@ -5,7 +5,7 @@ module Api
         users = User.order('created_at DESC');
         render json: {status: 'SUCCESS', message:'Loaded users', data:users},status: :ok
       end
-
+#SHOW
       def show
         if User.exists?(params[:id])
           user = User.find(params[:id])
