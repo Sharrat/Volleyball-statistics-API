@@ -11,7 +11,7 @@ module Api
           tournament = Tournament.find(params[:id])
           season = Season.find(tournament.season_id)
           render json: {status: 'SUCCESS', message:'Tournament loaded',
-                        data:{"id": tournament.id, "Tournament_name": tournament.Tournament_name,
+                        data:{"id": tournament.id, "tournament_name": tournament.tournament_name,
                           Season: {"id": season.id, "Season_name": season.Season_name, "Shortened_season_name": season.Shortened_season_name}}},status: :ok
         else
           render json: {status: 'ERROR', message:'Tournament not found'}
@@ -25,9 +25,9 @@ module Api
           season = Season.find(params[:season_id])
           if tournament.save
             render json: {status: 'SUCCESS', message:'Tournament saved',
-                          data:{"id": tournament.id, "Tournament_name": tournament.Tournament_name, "season_id": season.id}}
+                          data:{"id": tournament.id, "tournament_name": tournament.tournament_name, "season_id": season.id}}
           else
-            if Tournament.exists?(Tournament_name: params[:Tournament_name], season_id: params[:season_id])
+            if Tournament.exists?(tournament_name: params[:tournament_name], season_id: params[:season_id])
               render json: {status: 'ERROR', message:'Tournament already exists'}
             else
               render json: {status: 'ERROR', message:'Tournament not saved'}
@@ -58,7 +58,7 @@ module Api
             season = Season.find(params[:season_id])
             if tournament.update(tournament_params)
               render json: {status: 'SUCCESS', message:'Tournament updated',
-                            data:{"id": tournament.id, "Tournament_name": tournament.Tournament_name, "season_id": season.id}}
+                            data:{"id": tournament.id, "tournament_name": tournament.tournament_name, "season_id": season.id}}
             else
               render json: {status: 'ERROR', message:'Tournament not updated'}
             end
@@ -73,7 +73,7 @@ module Api
       private
 
       def tournament_params
-        params.permit(:Tournament_name, :season_id)
+        params.permit(:tournament_name, :season_id)
       end
     end
   end

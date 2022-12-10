@@ -27,8 +27,8 @@ while tournaments_loop < 10 and tournaments_max_loop < 100
   random_season = Season.all.sample
   random_name = Faker::WorldCup.group + ' Volleyball Cup'# + random_season.Season_name
 
-  if not Tournament.exists?(Tournament_name: random_name, season_id: random_season.id)
-    tournaments.append(Tournament.create(Tournament_name: random_name, season_id: random_season.id))
+  if not Tournament.exists?(tournament_name: random_name, season_id: random_season.id)
+    tournaments.append(Tournament.create(tournament_name: random_name, season_id: random_season.id))
     tournaments_loop += 1
     tournaments_max_loop = 0
   else
