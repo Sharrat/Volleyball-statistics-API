@@ -41,6 +41,20 @@ while tournaments_loop < 10 and tournaments_max_loop < 100
   end
 end
 
+
+# TOURNAMENT_STAGES
+
+tournament_stages = Array[TournamentStage]
+
+for i in 1..(Tournament.count) do
+  tournament_stages.append(TournamentStage.create(stage_name: "Preliminary round", tournament_id: i))
+  tournament_stages.append(TournamentStage.create(stage_name: "Quarterfinals", tournament_id: i))
+  tournament_stages.append(TournamentStage.create(stage_name: "Semifinals", tournament_id: i))
+  tournament_stages.append(TournamentStage.create(stage_name: "Bronze-medal game", tournament_id: i))
+  tournament_stages.append(TournamentStage.create(stage_name: "Gold-medal game", tournament_id: i))
+end
+
+
 #USERS
 users = Array[User]
 

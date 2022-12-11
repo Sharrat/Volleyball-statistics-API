@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema[7.0].define(version: 2022_12_10_153142) do
   create_table "players", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "name"
@@ -47,6 +48,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_10_153142) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tournament_stages", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.string "stage_name", null: false
+    t.bigint "tournament_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stage_name", "tournament_id"], name: "index_tournament_stages_on_stage_name_and_tournament_id", unique: true
+    t.index ["tournament_id"], name: "index_tournament_stages_on_tournament_id"
+  end
+
   create_table "tournament_teams", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.bigint "team_id", null: false
     t.datetime "created_at", null: false
@@ -73,6 +83,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_10_153142) do
 
   add_foreign_key "players", "teams"
   add_foreign_key "season_ownerships", "seasons"
+  add_foreign_key "tournament_stages", "tournaments"
   add_foreign_key "tournament_teams", "teams"
   add_foreign_key "tournaments", "seasons"
 end
