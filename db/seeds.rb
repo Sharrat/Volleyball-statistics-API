@@ -47,7 +47,7 @@ users = Array[User]
 5.times do
 username = Faker::Name.name
 
-if not User.exists?(username)
+  if not User.exists?(username)
   users.append(
     User.create(
       username: username,
@@ -55,4 +55,5 @@ if not User.exists?(username)
       is_admin: random_boolean = [true, false].sample
       )
   )
+  end
 end
