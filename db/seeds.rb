@@ -41,6 +41,7 @@ while tournaments_loop < 10 and tournaments_max_loop < 100
   end
 end
 
+
 # TOURNAMENT_STAGES
 
 tournament_stages = Array[TournamentStage]
@@ -51,4 +52,22 @@ for i in 1..(Tournament.count) do
   tournament_stages.append(TournamentStage.create(stage_name: "Semifinals", tournament_id: i))
   tournament_stages.append(TournamentStage.create(stage_name: "Bronze-medal game", tournament_id: i))
   tournament_stages.append(TournamentStage.create(stage_name: "Gold-medal game", tournament_id: i))
+end
+
+
+#USERS
+users = Array[User]
+
+5.times do
+username = Faker::Name.name
+
+  if not User.exists?(username)
+  users.append(
+    User.create(
+      username: username,
+      password: Faker::Blockchain::Tezos.account,
+      is_admin: random_boolean = [true, false].sample
+      )
+  )
+  end
 end
