@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resources :tournaments
       resources :tournament_stages
       resources :users
+      resources :stage_teams
     end
   end
 end

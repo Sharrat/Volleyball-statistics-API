@@ -71,3 +71,35 @@ username = Faker::Name.name
   )
   end
 end
+
+#STAGE_TEAMS
+
+stage_teams = Array[StageTeam]
+
+for i in 1..(TournamentStage.count) do
+  if TournamentStage.find(i).stage_name == "Preliminary round"
+    16.times do
+      stage_teams.append(StageTeam.create(team_id: Team.all.sample.id, tournament_stage_id: i))
+    end
+  end
+  if TournamentStage.find(i).stage_name == "Quarterfinals"
+    8.times do
+      stage_teams.append(StageTeam.create(team_id: Team.all.sample.id, tournament_stage_id: i))
+    end
+  end
+  if TournamentStage.find(i).stage_name == "Semifinals"
+    4.times do
+      stage_teams.append(StageTeam.create(team_id: Team.all.sample.id, tournament_stage_id: i))
+    end
+  end
+  if TournamentStage.find(i).stage_name == "Bronze-medal game"
+    2.times do
+      stage_teams.append(StageTeam.create(team_id: Team.all.sample.id, tournament_stage_id: i))
+    end
+  end
+  if TournamentStage.find(i).stage_name == "Gold-medal game"
+    2.times do
+      stage_teams.append(StageTeam.create(team_id: Team.all.sample.id, tournament_stage_id: i))
+    end
+  end
+end
