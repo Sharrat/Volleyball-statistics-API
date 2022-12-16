@@ -1,4 +1,5 @@
 class StageRound < ApplicationRecord
-  #belongs_to :tournament_stage
+  validates :round_name, presence: true
+  belongs_to :tournament_stage
   #has_many :matches
 end

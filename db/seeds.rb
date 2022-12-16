@@ -8,38 +8,38 @@
 
 # SEASONS
 seasons = Array[Season]
-(1..5).each { |a|
-  seasons.append(Season.create(Season_name: '202' + a.to_s + '/202' + (a + 1).to_s, Shortened_season_name: '2' + a.to_s + '/2' + (a + 1).to_s))
-}
+# (1..5).each { |a|
+#   seasons.append(Season.create(Season_name: '202' + a.to_s + '/202' + (a + 1).to_s, Shortened_season_name: '2' + a.to_s + '/2' + (a + 1).to_s))
+# }
 
 # TEAMS & PLAYERS
 teams = Array[Team]
 players = Array[Player]
 
-10.times do
-  teams.append(Team.create(Team_name: team1 = Faker::Team.name , Shortened_team_name: team1[0, 2].upcase + team1.reverse[0, 1].upcase))
-  10.times do
-  players.append(Player.create(name: Faker::Name.first_name, surname: Faker::Name.last_name , team_id: Team.last.id ))
-  end
-end
+# 10.times do
+#   teams.append(Team.create(Team_name: team1 = Faker::Team.name , Shortened_team_name: team1[0, 2].upcase + team1.reverse[0, 1].upcase))
+#   10.times do
+#   players.append(Player.create(name: Faker::Name.first_name, surname: Faker::Name.last_name , team_id: Team.last.id ))
+#   end
+# end
 
 # TOURNAMENT
 tournaments = Array[Tournament]
 tournaments_loop = 0
 tournaments_max_loop = 0
 
-while tournaments_loop < 10 and tournaments_max_loop < 100
-  random_season = Season.all.sample
-  random_name = Faker::WorldCup.group + ' Volleyball Cup'# + random_season.Season_name
-
-  if not Tournament.exists?(tournament_name: random_name, season_id: random_season.id)
-    tournaments.append(Tournament.create(tournament_name: random_name, season_id: random_season.id))
-    tournaments_loop += 1
-    tournaments_max_loop = 0
-  else
-    tournaments_max_loop += 1
-  end
-end
+# while tournaments_loop < 10 and tournaments_max_loop < 100
+#   random_season = Season.all.sample
+#   random_name = Faker::WorldCup.group + ' Volleyball Cup'# + random_season.Season_name
+#
+#   if not Tournament.exists?(tournament_name: random_name, season_id: random_season.id)
+#     tournaments.append(Tournament.create(tournament_name: random_name, season_id: random_season.id))
+#     tournaments_loop += 1
+#     tournaments_max_loop = 0
+#   else
+#     tournaments_max_loop += 1
+#   end
+# end
 
 
 # TOURNAMENT_STAGES
@@ -47,27 +47,48 @@ end
 tournament_stages = Array[TournamentStage]
 
 for i in 1..(Tournament.count) do
-  tournament_stages.append(TournamentStage.create(stage_name: "Preliminary round", tournament_id: i))
-  tournament_stages.append(TournamentStage.create(stage_name: "Quarterfinals", tournament_id: i))
-  tournament_stages.append(TournamentStage.create(stage_name: "Semifinals", tournament_id: i))
-  tournament_stages.append(TournamentStage.create(stage_name: "Bronze-medal game", tournament_id: i))
-  tournament_stages.append(TournamentStage.create(stage_name: "Gold-medal game", tournament_id: i))
+  # tournament_stages.append(TournamentStage.create(stage_name: "Preliminary round", tournament_id: i))
+  # tournament_stages.append(TournamentStage.create(stage_name: "Quarterfinals", tournament_id: i))
+  # tournament_stages.append(TournamentStage.create(stage_name: "Semifinals", tournament_id: i))
+  # tournament_stages.append(TournamentStage.create(stage_name: "Bronze-medal game", tournament_id: i))
+  # tournament_stages.append(TournamentStage.create(stage_name: "Gold-medal game", tournament_id: i))
 end
 
 
 #USERS
 users = Array[User]
 
-5.times do
-username = Faker::Name.name
+# 5.times do
+#   username = Faker::Name.name
+#
+#   if not User.exists?(username)
+#   users.append(
+#     User.create(
+#       username: username,
+#       password: Faker::Blockchain::Tezos.account,
+#       is_admin: random_boolean = [true, false].sample
+#       )
+#   )
+#   end
+# end
 
-  if not User.exists?(username)
-  users.append(
-    User.create(
-      username: username,
-      password: Faker::Blockchain::Tezos.account,
-      is_admin: random_boolean = [true, false].sample
-      )
-  )
+#STAGE_ROUNDS
+stage_rounds = Array[StageRound]
+
+window=TournamentStage.count
+for k in 1..window do
+  if  TournamentStage.exists?(id: k)
+    for i in 1..2 do
+      if not StageRound.exists?(round_name: "Round #{i}", tournament_stage_id: k)
+        stage_rounds.append(
+          StageRound.create(
+            round_name: "Round #{i}",
+            tournament_stage_id: k
+          )
+        )
+      end
+    end
+  else
+    window+=1
   end
 end
