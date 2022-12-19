@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_12_192533) do
+
+ActiveRecord::Schema[7.0].define(version: 2022_12_15_232955) do
   create_table "players", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "name"
     t.string "surname"
@@ -18,13 +19,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_12_192533) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["team_id"], name: "index_players_on_team_id"
-  end
-
-  create_table "season_ownerships", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
-    t.bigint "season_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["season_id"], name: "index_season_ownerships_on_season_id"
   end
 
   create_table "seasons", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
@@ -36,8 +30,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_12_192533) do
 
   create_table "stage_rounds", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "round_name"
+    t.bigint "tournament_stage_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["round_name", "tournament_stage_id"], name: "index_stage_rounds_on_round_name_and_tournament_stage_id", unique: true
+    t.index ["tournament_stage_id"], name: "index_stage_rounds_on_tournament_stage_id"
   end
 
   create_table "stage_teams", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
@@ -89,6 +86,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_12_192533) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "players", "teams"
+  add_foreign_key "stage_rounds", "tournament_stages"
   add_foreign_key "stage_teams", "teams"
   add_foreign_key "stage_teams", "tournament_stages"
   add_foreign_key "tournament_stages", "tournaments"

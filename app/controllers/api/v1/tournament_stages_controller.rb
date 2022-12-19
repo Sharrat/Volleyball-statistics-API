@@ -31,7 +31,7 @@ module Api
             render json: {status: 'ERROR', message:'Tournament stage not saved', data: tournament_stage.errors}, status: :unprocessable_entity
           end
         else
-          render json: {status: 'ERROR', message:'Tournament stage not saved', data:{"tournament_stage": ["must exist"]}}, status: :not_found
+          render json: {status: 'ERROR', message:'Tournament stage not saved', data:{"tournament": ["must exist"]}}, status: :not_found
         end
       end
 

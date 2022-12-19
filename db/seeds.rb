@@ -3,16 +3,16 @@
 #
 # Examples:
 #
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+#  movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
+#  Character.create(name: "Luke", movie: movies.first)
 
-# SEASONS
+#SEASONS
 seasons = Array[Season]
 (1..5).each { |a|
   seasons.append(Season.create(Season_name: '202' + a.to_s + '/202' + (a + 1).to_s, Shortened_season_name: '2' + a.to_s + '/2' + (a + 1).to_s))
 }
 
-# TEAMS & PLAYERS
+#TEAMS & PLAYERS
 teams = Array[Team]
 players = Array[Player]
 
@@ -23,14 +23,14 @@ players = Array[Player]
   end
 end
 
-# TOURNAMENT
+#TOURNAMENT
 tournaments = Array[Tournament]
 tournaments_loop = 0
 tournaments_max_loop = 0
 
 while tournaments_loop < 10 and tournaments_max_loop < 100
   random_season = Season.all.sample
-  random_name = Faker::WorldCup.group + ' Volleyball Cup'# + random_season.Season_name
+  random_name = Faker::WorldCup.group + ' Volleyball Cup'+ random_season.Season_name
 
   if not Tournament.exists?(tournament_name: random_name, season_id: random_season.id)
     tournaments.append(Tournament.create(tournament_name: random_name, season_id: random_season.id))
@@ -42,7 +42,7 @@ while tournaments_loop < 10 and tournaments_max_loop < 100
 end
 
 
-# TOURNAMENT_STAGES
+#TOURNAMENT_STAGES
 
 tournament_stages = Array[TournamentStage]
 
@@ -59,8 +59,8 @@ end
 users = Array[User]
 
 5.times do
-username = Faker::Name.name
-
+  username = Faker::Name.name
+#
   if not User.exists?(username)
   users.append(
     User.create(
@@ -69,6 +69,27 @@ username = Faker::Name.name
       is_admin: random_boolean = [true, false].sample
       )
   )
+  end
+end
+
+#STAGE_ROUNDS
+stage_rounds = Array[StageRound]
+
+window = TournamentStage.count
+for k in 1..window do
+  if TournamentStage.exists?(id: k)
+    for i in 1..2 do
+      if not StageRound.exists?(round_name: "Round #{i}", tournament_stage_id: k)
+        stage_rounds.append(
+          StageRound.create(
+            round_name: "Round #{i}",
+            tournament_stage_id: k
+          )
+        )
+      end
+    end
+  else
+    window += 1
   end
 end
 
