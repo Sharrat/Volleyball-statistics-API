@@ -93,8 +93,6 @@ for k in 1..window do
   end
 end
 
-
-
 #STAGE_TEAMS
 
 stage_teams = Array[StageTeam]
