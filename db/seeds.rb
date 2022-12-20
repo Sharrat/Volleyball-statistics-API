@@ -13,13 +13,16 @@ seasons = Array[Season]
 }
 
 #TEAMS & PLAYERS
+
+#Stworzenie 30 druzyn. Dla kazdego zaspolu tworzonych jest 10 zawodnikow
+
 teams = Array[Team]
 players = Array[Player]
 
-10.times do
+30.times do
   teams.append(Team.create(Team_name: team1 = Faker::Team.name , Shortened_team_name: team1[0, 2].upcase + team1.reverse[0, 1].upcase))
   10.times do
-  players.append(Player.create(name: Faker::Name.first_name, surname: Faker::Name.last_name , team_id: Team.last.id ))
+  players.append(Player.create(name: Faker::Name.first_name, surname: Faker::Name.last_name , team_id: Team.last.id )) #kazdy gracz jest oddawany do ostatnio stworzonej druzyny
   end
 end
 
@@ -122,5 +125,24 @@ for i in 1..(TournamentStage.count) do
     2.times do
       stage_teams.append(StageTeam.create(team_id: Team.all.sample.id, tournament_stage_id: i))
     end
+  end
+end
+
+#TOURNAMENT_TEAMS
+#Dla kazdego turnieju dobieranych jest losowo 16 druzyn, ktore sie nie powtarzaja
+tournament_teams = Array[TournamentTeam]
+
+for i in 1..(Tournament.count) do                                                #petla ktora sie wykona tyle razy ile jest turniejow
+  if  TournamentTeam.all.any? { |hash| hash[:tournament_id] == i }               #sprawdzenie czy w TournamentTeam sa juz dodane druzyny(Team_ID) dla turnieju(Tournament_ID)
+  else
+  choosen_teams = []                                                             #stworzenie tabeli z wybranymi druzynami dla turnieju i
+  while choosen_teams.count <= 16                                                #wybieranie druzyn do momentu, az bedzie ich 16 <-mozna zmienic ich ilosc
+    random_team = Team.all.sample.id                                             #wybranie losowej druzyny (Team_ID)
+    choosen_teams.append(random_team) unless choosen_teams.include?(random_team) #jezeli druzyna zostlala juz wybrana to jest pomijana, jesli nie to dodawana jest do tabeli wybranych druzyn
+  end
+
+  for j in 1..(choosen_teams.count) do
+    tournament_teams.append(TournamentTeam.create(tournament_id: i, team_id: choosen_teams[j])) #przyporzadkowanie wybranych druzyn do turnieju
+  end
   end
 end
