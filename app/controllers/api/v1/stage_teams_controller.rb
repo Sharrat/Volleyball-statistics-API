@@ -51,7 +51,7 @@ module Api
             render json: {status: 'ERROR', message:'Stage team not updated', data:stage_team.errors},status: :unprocessable_entity
           end
         else
-          render json: {status: 'ERROR', message:'Stage team not deleted', data:{"id": ["must exist"]}},status: :not_found
+          render json: {status: 'ERROR', message:'Stage team not updated', data:{"id": ["must exist"]}},status: :not_found
         end
       end
 
