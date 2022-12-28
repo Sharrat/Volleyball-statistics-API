@@ -146,3 +146,45 @@ for i in 1..(Tournament.count) do                                               
   end
   end
 end
+
+
+  #MATCHES
+    matches = Array[Match]
+    stage_round_count = StageRound.count
+    team_count = Team.count/2 - 1
+
+    for i in 1..(stage_round_count) do
+      if StageRound.exists?(id: i)
+        for j in 1..(team_count)
+          if Team.exists?(id: j)
+            team1 = Team.find(j)
+            team2 = Team.all.sample
+            while team1 == team2
+              team2 = Team.all.sample
+            end
+          else
+            team_count += 1
+          end
+          if not Match.exists?(round_id: j, team1_id: team1.id, team2_id: team2.id)
+            #find date string
+            stage_round = StageRound.find(i)
+            tournament_stage = TournamentStage.find(stage_round.tournament_stage_id)
+            tournament = Tournament.find(tournament_stage.tournament_id)
+            season = Season.find(tournament.season_id)
+            # string to date
+            date = "01-01-20"
+            date.concat(season.Shortened_season_name[0,2])
+            date = date.to_date + rand(1..256).days
+            result = rand(0..10).to_s << ":" << rand(0..10).to_s
+            matches.append(
+              Match.create(round_id: j, team1_id: team1.id, team2_id: team2.id,
+                             match_name: team1.Team_name << " vs " << team2.Team_name,
+                             match_date: date,
+                             result: (result))
+            )
+          end
+        end
+      else
+        stage_round_count += 1
+      end
+    end
