@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 9) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_11_103314) do
+  create_table "matches", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.string "match_name", null: false
+    t.date "match_date", null: false
+    t.string "result", null: false
+    t.bigint "round_id", null: false
+    t.bigint "team1_id", null: false
+    t.bigint "team2_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["match_name", "match_date"], name: "index_matches_on_match_name_and_match_date", unique: true
+    t.index ["round_id"], name: "index_matches_on_round_id"
+    t.index ["team1_id"], name: "index_matches_on_team1_id"
+    t.index ["team2_id"], name: "index_matches_on_team2_id"
+  end
+
   create_table "players", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.string "name"
     t.string "surname"
@@ -84,6 +99,10 @@ ActiveRecord::Schema[7.0].define(version: 9) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "matches", "stage_rounds", column: "round_id"
+  add_foreign_key "matches", "teams", column: "team1_id"
+  add_foreign_key "matches", "teams", column: "team2_id"
+  add_foreign_key "players", "teams"
   add_foreign_key "stage_rounds", "tournament_stages"
   add_foreign_key "stage_teams", "teams"
   add_foreign_key "stage_teams", "tournament_stages"
