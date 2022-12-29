@@ -7,66 +7,43 @@ module Api
       end
 
       def show
-        if Tournament.exists?(params[:id])
-          tournament = Tournament.find(params[:id])
-          season = Season.find(tournament.season_id)
-          render json: {status: 'SUCCESS', message:'Tournament loaded',
-                        data:{"id": tournament.id, "tournament_name": tournament.tournament_name,
-                          Season: {"id": season.id, "Season_name": season.Season_name, "Shortened_season_name": season.Shortened_season_name}}},status: :ok
-        else
-          render json: {status: 'ERROR', message:'Tournament not found'}, status: :not_found
-        end
+        tournament = Tournament.find(params[:id])
+        season = Season.find(tournament.season_id)
+        render json: {status: 'SUCCESS', message:'Tournament loaded',
+                      data:{"id": tournament.id, "tournament_name": tournament.tournament_name,
+                        Season: {"id": season.id, "Season_name": season.Season_name, "Shortened_season_name": season.Shortened_season_name}}},status: :ok
       end
 
       def create
         tournament = Tournament.new(tournament_params)
 
-        if Season.exists?(params[:season_id])
-          season = Season.find(params[:season_id])
-          if tournament.save
-            render json: {status: 'SUCCESS', message:'Tournament saved',
-                          data:{"id": tournament.id, "tournament_name": tournament.tournament_name, "season_id": season.id}}, status: :ok
-          else
-            if Tournament.exists?(tournament_name: params[:tournament_name], season_id: params[:season_id])
-              render json: {status: 'ERROR', message:'Tournament already exists'}, status: :conflict
-            else
-              render json: {status: 'ERROR', message:'Tournament not saved'}, status: :unprocessable_entity
-            end
-          end
+        season = Season.find(params[:season_id])
+        if tournament.save
+          render json: {status: 'SUCCESS', message:'Tournament saved',
+                        data:{"id": tournament.id, "tournament_name": tournament.tournament_name, "season_id": season.id}}, status: :ok
         else
-          render json: {status: 'ERROR', message:'Season not found'}, status: :not_found
+          render json: {status: 'ERROR', message:'Tournament not saved', data:tournament.errors},status: :unprocessable_entity
         end
       end
 
       def destroy
-        if Tournament.exists?(params[:id])
-          tournament = Tournament.find(params[:id])
-          if tournament.destroy
-            render json: {status: 'SUCCESS', message:'Tournament deleted'}, status: :ok
-          else
-            render json: {status: 'ERROR', message:'Tournament not deleted'}, status: :unprocessable_entity
-          end
+        tournament = Tournament.find(params[:id])
+        if tournament.destroy
+          render json: {status: 'SUCCESS', message:'Tournament deleted'}, status: :ok
         else
-          render json: {status: 'ERROR', message:'Tournament not found'}, status: :not_found
+          render json: {status: 'ERROR', message:'Tournament not deleted'}, status: :unprocessable_entity
         end
       end
 
       def update
-        if Tournament.exists?(params[:id])
-          if Season.exists?(params[:season_id])
-            tournament = Tournament.find(params[:id])
-            season = Season.find(params[:season_id])
-            if tournament.update(tournament_params)
-              render json: {status: 'SUCCESS', message:'Tournament updated',
-                            data:{"id": tournament.id, "tournament_name": tournament.tournament_name, "season_id": season.id}}, status: :ok
-            else
-              render json: {status: 'ERROR', message:'Tournament not updated'}, status: :unprocessable_entity
-            end
-          else
-            render json: {status: 'ERROR', message:'Season not found'}, status: :not_found
-          end
+        tournament = Tournament.find(params[:id])
+        season = Season.find(params[:season_id])
+        if tournament.update(tournament_params)
+          render json: {status: 'SUCCESS', message:'Tournament updated',
+                        data:{"id": tournament.id, "tournament_name": tournament.tournament_name, "season_id": season.id}}, status: :ok
         else
-          render json: {status: 'ERROR', message:'Tournament not found'}, status: :not_found
+          render json: {status: 'ERROR', message:'Tournament not updated', data:tournament.errors},status: :unprocessable_entity
+
         end
       end
 
