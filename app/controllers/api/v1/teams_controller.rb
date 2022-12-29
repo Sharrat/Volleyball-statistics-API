@@ -19,8 +19,11 @@ module Api
       end
       def destroy
         team = Team.find(params[:id])
-        team.destroy
-        render json: {status: 'SUCCESS', message:'Deleted team', data:team},status: :ok
+        if team.destroy
+          render json: {status: 'SUCCESS', message:'Deleted team', data:team},status: :ok
+        else
+          render json: {status: 'ERROR', message:'Team not deleted', data:team.errors},status: :conflict
+        end
       end
       def update
         team = Team.find(params[:id])
