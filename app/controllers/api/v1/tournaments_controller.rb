@@ -31,7 +31,8 @@ module Api
         if tournament.destroy
           render json: {status: 'SUCCESS', message:'Tournament deleted'}, status: :ok
         else
-          render json: {status: 'ERROR', message:'Tournament not deleted'}, status: :unprocessable_entity
+          render json: {status: 'ERROR', message:'Tournament not deleted', data:tournament.errors},status: :unprocessable_entity
+
         end
       end
 
