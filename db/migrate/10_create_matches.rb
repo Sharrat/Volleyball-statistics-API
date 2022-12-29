@@ -5,9 +5,9 @@ class CreateMatches < ActiveRecord::Migration[7.0]
       t.date :match_date, null: false
       t.string :result, null: false
 
-      t.belongs_to :round, null: false, foreign_key: { to_table: :stage_rounds }
-      t.belongs_to :team1, null: false, foreign_key: { to_table: :teams }
-      t.belongs_to :team2, null: false, foreign_key: { to_table: :teams }
+      t.references :round, null: false, foreign_key: { to_table: :stage_rounds }
+      t.references :team1, null: false, foreign_key: { to_table: :teams }
+      t.references :team2, null: false, foreign_key: { to_table: :teams }
 
       t.timestamps
     end
