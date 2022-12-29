@@ -3,5 +3,6 @@ class Team < ApplicationRecord
   validates :Shortened_team_name, presence: true
   has_many :players, dependent: :restrict_with_error
   has_many :stage_teams, dependent: :restrict_with_error
-  has_many :tournament_teams, dependent: :restrict_with_error  
+  has_many :tournament_teams, dependent: :restrict_with_error
+  has_many :matches, dependent: :restrict_with_error 
 end
