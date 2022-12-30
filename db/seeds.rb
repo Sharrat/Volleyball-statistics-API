@@ -175,13 +175,14 @@ end
             date = "01-01-20"
             date.concat(season.Shortened_season_name[0,2])
             date = date.to_date + rand(1..256).days
-            result = rand(0..10).to_s << ":" << rand(0..10).to_s
+            result = rand(0..5).to_s << ":" << rand(0..5).to_s
             matches.append(
               Match.create(round_id: j, team1_id: team1.id, team2_id: team2.id,
                              match_name: team1.Team_name << " vs " << team2.Team_name,
                              match_date: date,
                              result: (result))
             )
+
           end
         end
       else
