@@ -175,7 +175,7 @@ end
             date = "01-01-20"
             date.concat(season.Shortened_season_name[0,2])
             date = date.to_date + rand(1..256).days
-            result = rand(0..10).to_s << ":" << rand(0..10).to_s
+            result = rand(0..3).to_s << ":" << rand(0..3).to_s
             matches.append(
               Match.create(round_id: j, team1_id: team1.id, team2_id: team2.id,
                              match_name: team1.Team_name << " vs " << team2.Team_name,
@@ -188,3 +188,34 @@ end
         stage_round_count += 1
       end
     end
+
+#match_sets
+
+match_sets = Array[MatchSet]
+for i in 1..(Match.count)
+  t1_win_count = Match.find(i).result[0].to_i
+  t2_win_count = Match.find(i).result[-1].to_i
+  set_num = 0
+    for j in 1..t1_win_count
+      wyn1 = rand(25..40)
+      if(wyn1 == 25)
+        wyn2 = rand(0..23)
+      else
+        wyn2 = wyn1-2
+      end
+      result_str = wyn1.to_s << ":" << wyn2.to_s
+      set_num = set_num + 1
+      match_sets.append(MatchSet.create(match_id: i, set_number: set_num, result: result_str ))
+    end
+    for j in 1..t2_win_count
+      wyn2 = rand(25..40)
+      if(wyn2 == 25)
+        wyn1 = rand(0..23)
+      else
+        wyn1 = wyn2-2
+      end
+      result_str = wyn1.to_s << ":" << wyn2.to_s
+      set_num = set_num + 1
+      match_sets.append(MatchSet.create(match_id: i, set_number: set_num, result: result_str ))
+    end
+end
