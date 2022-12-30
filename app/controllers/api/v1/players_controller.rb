@@ -13,15 +13,11 @@ module Api
       end
 
       def create
-        if Team.exists?(params[:team_id])
         player = Player.new(player_params)
-          if player.save
-            render json: {status: 'SUCCESS', message:'Saved player', data:player},status: :ok
-          else
-            render json: {status: 'ERROR', message:'Player not saved', data:player.errors},status: :unprocessable_entity
-          end
+        if player.save!
+          render json: {status: 'SUCCESS', message:'Saved player', data:player},status: :ok
         else
-          render json: {status: 'ERROR', message:'Player not saved', data:{"team": ["must exist"]}},status: :not_found
+          render json: {status: 'ERROR', message:'Player not saved', data:player.errors},status: :unprocessable_entity
         end
       end
 
@@ -32,15 +28,11 @@ module Api
       end
 
       def update
-        if Player.exists?(params[:id])
         player = Player.find(params[:id])
         if player.update(player_params)
           render json: {status: 'SUCCESS', message:'Updated player', data:player},status: :ok
         else
           render json: {status: 'ERROR', message:'Player not updated', data:player.errors},status: :unprocessable_entity
-        end
-        else
-          render json: {status: 'ERROR', message:'Player not updated', data:{"id": ["must exist"]}},status: :not_found
         end
       end
 

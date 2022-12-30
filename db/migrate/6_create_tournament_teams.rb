@@ -6,5 +6,6 @@ class CreateTournamentTeams < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
+    add_index :tournament_teams, [:tournament_id, :team_id], unique: true
   end
 end
