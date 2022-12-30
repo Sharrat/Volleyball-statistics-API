@@ -11,4 +11,6 @@ class Match < ApplicationRecord
   validates :match_name, presence: true, uniqueness: { scope: :match_date, message: "Statement already exists (record with the same name and date already exists)" }
   # delete later! validates :match_date, presence: true, uniqueness: { scope: :stage_round, message: "Statement already exists" }
   validates :result, presence: true
+
+  has_many :match_sets
 end

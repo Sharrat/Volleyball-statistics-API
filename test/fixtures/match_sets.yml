@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  match_id: MyString
+  : one
+  result: MyString
+  : MyString
+
+two:
+  match_id: MyString
+  : two
+  result: MyString
+  : MyString
