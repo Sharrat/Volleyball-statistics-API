@@ -1,7 +1,7 @@
 module Api
   module V1
     class PlayersController < ApplicationController
-
+      before_action :authenticate_user!
       def index
         players = Player.order('created_at DESC')
         render json: {status: 'SUCCESS', message:'Loaded players', data:players},status: :ok

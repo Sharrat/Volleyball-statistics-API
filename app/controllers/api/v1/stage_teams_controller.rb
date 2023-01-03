@@ -1,6 +1,7 @@
 module Api
   module V1
     class StageTeamsController < ApplicationController
+      before_action :authenticate_user!
 
       def index
         stage_teams = StageTeam.order('created_at DESC')

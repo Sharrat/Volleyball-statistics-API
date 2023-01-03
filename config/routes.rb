@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount_devise_token_auth_for 'User', at: 'auth'
   namespace 'api' do
     namespace 'v1' do
       resources :seasons
@@ -6,7 +7,6 @@ Rails.application.routes.draw do
       resources :teams
       resources :tournaments
       resources :tournament_stages
-      resources :users
       resources :stage_teams
       resources :stage_rounds
       resources :tournament_teams

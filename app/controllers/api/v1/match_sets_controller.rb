@@ -1,6 +1,7 @@
 module Api
   module V1
     class MatchSetsController < ApplicationController
+      before_action :authenticate_user!
 
       def index
         match_sets = MatchSet.order('created_at DESC')

@@ -1,6 +1,7 @@
 module Api
   module V1
     class StageRoundsController < ApplicationController
+      before_action :authenticate_user!
       def index
         stage_rounds = StageRound.order('created_at DESC')
         render json: {status: 'SUCCESS', message:'Loaded stage rounds', data:stage_rounds},status: :ok

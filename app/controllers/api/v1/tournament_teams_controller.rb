@@ -1,6 +1,7 @@
 module Api
   module V1
     class TournamentTeamsController < ApplicationController
+      before_action :authenticate_user!
 
       def index
         tournament_teams = TournamentTeam.order('created_at ASC')

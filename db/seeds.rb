@@ -58,23 +58,6 @@ for i in 1..(Tournament.count) do
 end
 
 
-#USERS
-users = Array[User]
-
-5.times do
-  username = Faker::Name.name
-#
-  if not User.exists?(username)
-  users.append(
-    User.create(
-      username: username,
-      password: Faker::Blockchain::Tezos.account,
-      is_admin: random_boolean = [true, false].sample
-      )
-  )
-  end
-end
-
 #STAGE_ROUNDS
 stage_rounds = Array[StageRound]
 
