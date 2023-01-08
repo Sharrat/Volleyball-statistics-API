@@ -1,0 +1,223 @@
+{
+	"info": {
+		"_postman_id": "7cf1530d-dd43-479c-a004-40bd8da040d3",
+		"name": "Stage_rounds",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24643759"
+	},
+	"item": [
+		{
+			"name": "Stage Rounds info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/stage_rounds",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"stage_rounds"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stage round show",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/stage_rounds/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"stage_rounds",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stage round create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "access-token",
+						"value": "xL0qXJca5Kve33OcgqS7Zw",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "token-type",
+						"value": "Bearer",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "client",
+						"value": "F4gKRGrDOdK4_IIPdebvuQ",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "expiry",
+						"value": "1674408572",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "uid",
+						"value": "admin@admin.com",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhY2Nlc3MtdG9rZW4iOiJ4TDBxWEpjYTVLdmUzM09jZ3FTN1p3IiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6IkY0Z0tSR3JET2RLNF9JSVBkZWJ2dVEiLCJleHBpcnkiOiIxNjc0NDA4NTcyIiwidWlkIjoiYWRtaW5AYWRtaW4uY29tIn0=",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"round_name\":\"tournament round\",\r\n    \"tournament_stage_id\":1\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/stage_rounds",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"stage_rounds"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stage round update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"round_name\":\"tournament round\",\r\n    \"tournament_stage_id\":1\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/stage_rounds/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"stage_rounds",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stage round delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "access-token",
+						"value": "xL0qXJca5Kve33OcgqS7Zw",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "token-type",
+						"value": "Bearer",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "client",
+						"value": "F4gKRGrDOdK4_IIPdebvuQ",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "expiry",
+						"value": "1674408572",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "uid",
+						"value": "admin@admin.com",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhY2Nlc3MtdG9rZW4iOiJ4TDBxWEpjYTVLdmUzM09jZ3FTN1p3IiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6IkY0Z0tSR3JET2RLNF9JSVBkZWJ2dVEiLCJleHBpcnkiOiIxNjc0NDA4NTcyIiwidWlkIjoiYWRtaW5AYWRtaW4uY29tIn0=",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/stage_rounds/101",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"stage_rounds",
+						"101"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

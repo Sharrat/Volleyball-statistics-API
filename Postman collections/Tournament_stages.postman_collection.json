@@ -1,0 +1,138 @@
+{
+	"info": {
+		"_postman_id": "8ecb789b-3f9f-4f65-acee-b86e55c48736",
+		"name": "Tournament_stages",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24643759"
+	},
+	"item": [
+		{
+			"name": "Torunament Stages info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/tournament_stages",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"tournament_stages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Torunament Stage show",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/tournament_stages/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"tournament_stages",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tournament Stage create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"stage_name\":\"tournament stage\",\r\n    \"tournament_id\":1\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/tournament_stages",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"tournament_stages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tournament Stage update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"stage_name\":\"tournament stage\",\r\n    \"tournament_id\":1\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/tournament_stages/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"tournament_stages",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tournament Stage delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/tournament_stages/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"tournament_stages",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

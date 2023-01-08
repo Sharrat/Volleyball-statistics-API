@@ -1,0 +1,317 @@
+{
+	"info": {
+		"_postman_id": "db7cdedf-7262-4d76-865e-e8bd26bd7668",
+		"name": "Players",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24643759"
+	},
+	"item": [
+		{
+			"name": "Players info",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access-token",
+						"value": "cgLAUSgwMfYvBVpy16jt1w",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "token-type",
+						"value": "Bearer",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "client",
+						"value": "K8w7KDHB37R1w4joMakjxg",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "expiry",
+						"value": "1674406005",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "uid",
+						"value": "user@user.com",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhY2Nlc3MtdG9rZW4iOiJjZ0xBVVNnd01mWXZCVnB5MTZqdDF3IiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6Iks4dzdLREhCMzdSMXc0am9NYWtqeGciLCJleHBpcnkiOiIxNjc0NDA2MDA1IiwidWlkIjoidXNlckB1c2VyLmNvbSJ9",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "Set-Cookie",
+						"value": "_interslice_session=utSH4lIXC7gLuMAZnOTId5%2FNOQ7TcUuQc5mdXNk%2FcUscHmxbVbpZBndJ7KSbhYMbnJcj9kPs0%2BpSzLZJaRP%2B1UiE92SmV3wCoosOiQisLEcTJYGbC7U8iYIWfeWW3zgYbQLsY05C9fvqhwSBEeadpms66xSGjQncRCBEojwE%2BquKgFY3ezHTVuwMLrTadQCoQgZkNECA%2FjPh6h%2FbZ9DiWSD53gI7pr8ZCKFmZQPrOVbFn3SAAAQ40rbaOsrzRwULll0k1jFEaCbV20MqWSjNlfmBULVYGkrCljWH--dbGPaAZTMaUvYQRe--mIeBPbFGhv3Gdry17Io3Lg%3D%3D; path=/; HttpOnly; SameSite=Lax",
+						"description": "Sends cookies from the server to the user agent.",
+						"disableEdit": true,
+						"info": "Sends cookies from the server to the user agent."
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/players",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"players"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Player show",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access-token",
+						"value": "2HZqXviIcLy3JhntWooOkw",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "token-type",
+						"value": "Bearer",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "client",
+						"value": "ZUm20letpwPLHP_95iMHRQ",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "expiry",
+						"value": "1674401499",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "uid",
+						"value": "email@gmail.com",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhY2Nlc3MtdG9rZW4iOiIySFpxWHZpSWNMeTNKaG50V29vT2t3IiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6IlpVbTIwbGV0cHdQTEhQXzk1aU1IUlEiLCJleHBpcnkiOiIxNjc0NDAxNDk5IiwidWlkIjoiZW1haWxAZ21haWwuY29tIn0=",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/players/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"players",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Player create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "access-token",
+						"value": "ih9c-_lpzLrtHZ1WcVADVQ",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "token-type",
+						"value": "Bearer",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "client",
+						"value": "qV6L3617DQ7Sy6fjpZmUbA",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "expiry",
+						"value": "1674406038",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "uid",
+						"value": "admin@admin.com",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhY2Nlc3MtdG9rZW4iOiJpaDljLV9scHpMcnRIWjFXY1ZBRFZRIiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6InFWNkwzNjE3RFE3U3k2ZmpwWm1VYkEiLCJleHBpcnkiOiIxNjc0NDA2MDM4IiwidWlkIjoiYWRtaW5AYWRtaW4uY29tIn0=",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Bartosz\",\r\n    \"surname\":\"Kurek\",\r\n    \"team_id\": 1\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/players/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"players",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Player update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Bartosz\",\r\n    \"surname\":\"Kurek\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/players/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"players",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Player delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "access-token",
+						"value": "-Jx6G2L-KiwFClRcAFAekA",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "token-type",
+						"value": "Bearer",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "client",
+						"value": "IqPGIwh2vbYF9jGFOadHUQ",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "expiry",
+						"value": "1674406314",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "uid",
+						"value": "admin@admin.com",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhY2Nlc3MtdG9rZW4iOiItSng2RzJMLUtpd0ZDbFJjQUZBZWtBIiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6IklxUEdJd2gydmJZRjlqR0ZPYWRIVVEiLCJleHBpcnkiOiIxNjc0NDA2MzE0IiwidWlkIjoiYWRtaW5AYWRtaW4uY29tIn0=",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/players/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"players",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

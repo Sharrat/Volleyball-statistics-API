@@ -1,0 +1,117 @@
+{
+	"info": {
+		"_postman_id": "f7750136-d0d8-4a04-9749-4cdce30e36d6",
+		"name": "Team_stats",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24643759"
+	},
+	"item": [
+		{
+			"name": "Team_stats_info",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access-token",
+						"value": "3UucLxb3AmBN8qO5Te7tMA",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "token-type",
+						"value": "Bearer",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "client",
+						"value": "gYHY0N41sTGbcYxgwknFsw",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "expiry",
+						"value": "1674407883",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "uid",
+						"value": "admin@admin.com",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhY2Nlc3MtdG9rZW4iOiIzVXVjTHhiM0FtQk44cU81VGU3dE1BIiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6ImdZSFkwTjQxc1RHYmNZeGd3a25Gc3ciLCJleHBpcnkiOiIxNjc0NDA3ODgzIiwidWlkIjoiYWRtaW5AYWRtaW4uY29tIn0=",
+						"description": "Custom header",
+						"disableEdit": true,
+						"info": "Custom header"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/team_stats/1?tournament_id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"team_stats",
+						"1"
+					],
+					"query": [
+						{
+							"key": "access-token",
+							"value": "ojVq_-Qbi1H-WgTO7RjKzQ",
+							"description": "Custom header",
+							"disabled": true
+						},
+						{
+							"key": "token-type",
+							"value": "Bearer",
+							"description": "Custom header",
+							"disabled": true
+						},
+						{
+							"key": "client",
+							"value": "Dqi5cfAylkwnFZiTv5NVSw",
+							"description": "Custom header",
+							"disabled": true
+						},
+						{
+							"key": "expiry",
+							"value": "1674395640",
+							"description": "Custom header",
+							"disabled": true
+						},
+						{
+							"key": "uid",
+							"value": "email@gmail.com",
+							"description": "Custom header",
+							"disabled": true
+						},
+						{
+							"key": "Authorization",
+							"value": "Bearer eyJhY2Nlc3MtdG9rZW4iOiJvalZxXy1RYmkxSC1XZ1RPN1JqS3pRIiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6IkRxaTVjZkF5bGt3bkZaaVR2NU5WU3ciLCJleHBpcnkiOiIxNjc0Mzk1NjQwIiwidWlkIjoiZW1haWxAZ21haWwuY29tIn0=",
+							"description": "Custom header",
+							"disabled": true
+						},
+						{
+							"key": "tournament_id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
