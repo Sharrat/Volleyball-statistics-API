@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       resources :tournament_teams
       resources :matches
       resources :match_sets
+      resources :team_stats
     end
   end
 end
