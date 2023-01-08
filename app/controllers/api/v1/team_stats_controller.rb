@@ -139,7 +139,7 @@ module Api
         # 'Small points lost': small_points_lost
 
 
-        render json: {status: 'SUCCESS', message:'Loaded player', data: {'Possition':possition,'Matches played':matches_played[params[:id].to_i-1], 'Matches won': matches_won[params[:id].to_i-1], 'Matches lost': matches_lost[params[:id].to_i-1], 'Match': suma, 'Sets won': sets_won, 'Sets lost': sets_lost, 'Points won': points_won, 'Points lost': points_lost, 'Small points won': small_points_won, 'Small points lost': small_points_lost }}, status: :ok
+        render json: {status: 'SUCCESS', message:'Loaded team stats', data: {'Possition':possition,'Matches played':matches_played[params[:id].to_i-1], 'Matches won': matches_won[params[:id].to_i-1], 'Matches lost': matches_lost[params[:id].to_i-1], 'Match': suma, 'Sets won': sets_won, 'Sets lost': sets_lost, 'Points won': points_won, 'Points lost': points_lost, 'Small points won': small_points_won, 'Small points lost': small_points_lost }}, status: :ok
 
       end
 
