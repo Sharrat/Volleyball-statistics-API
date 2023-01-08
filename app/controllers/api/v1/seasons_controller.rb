@@ -1,34 +1,53 @@
 module Api
   module V1
     class SeasonsController < ApplicationController
-      before_action :authenticate_user!
       def index
-        seasons = Season.order('created_at DESC')
-        render json: {status: 'SUCCESS', message:'Loaded seasons', data:seasons},status: :ok
+        if user_signed_in? || admin_signed_in?
+          seasons = Season.order('created_at DESC')
+          render json: {status: 'SUCCESS', message:'Loaded seasons', data:seasons},status: :ok
+        else
+          render json: {status: 'Unauthorized', message:'Please sign in or sign up', data:401},status => 401
+        end
       end
       def show
-        season = Season.find(params[:id])
-        render json: {status: 'SUCCESS', message:'Loaded seasons', data:season},status: :ok
+        if user_signed_in? || admin_signed_in?
+          season = Season.find(params[:id])
+          render json: {status: 'SUCCESS', message:'Loaded seasons', data:season},status: :ok
+        else
+          render json: {status: 'Unauthorized', message:'Please sign in or sign up', data:401},status => 401
+        end
       end
       def create
-        season = Season.new(season_params)
-        if season.save
-          render json: {status: 'SUCCESS', message:'Saved season', data:season},status: :ok
+        if admin_signed_in?
+          season = Season.new(season_params)
+          if season.save
+            render json: {status: 'SUCCESS', message:'Saved season', data:season},status: :ok
+          else
+            render json: {status: 'ERROR', message:'season not saved', data:season.errors},status: :unprocessable_entity
+          end
         else
-          render json: {status: 'ERROR', message:'season not saved', data:season.errors},status: :unprocessable_entity
+          render json: {status: 'Unauthorized', message:'Please sign in as administrator', data:401},status => 401
         end
       end
       def destroy
-        season = Season.find(params[:id])
-        season.destroy
-        render json: {status: 'SUCCESS', message:'Deleted season', data:season},status: :ok
+        if admin_signed_in?
+          season = Season.find(params[:id])
+          season.destroy
+          render json: {status: 'SUCCESS', message:'Deleted season', data:season},status: :ok
+        else
+          render json: {status: 'Unauthorized', message:'Please sign in as administrator', data:401},status => 401
+        end
       end
       def update
-        season = Season.find(params[:id])
-        if season.update(season_params)
-          render json: {status: 'SUCCESS', message:'Updated season', data:season},status: :ok
+        if admin_signed_in?
+          season = Season.find(params[:id])
+          if season.update(season_params)
+            render json: {status: 'SUCCESS', message:'Updated season', data:season},status: :ok
+          else
+            render json: {status: 'ERROR', message:'Season not updated', data:season.errors},status: :unprocessable_entity
+          end
         else
-          render json: {status: 'ERROR', message:'Season not updated', data:season.errors},status: :unprocessable_entity
+          render json: {status: 'Unauthorized', message:'Please sign in as administrator', data:401},status => 401
         end
       end
       private

@@ -201,4 +201,19 @@ for i in 1..(Match.count)
       set_num = set_num + 1
       match_sets.append(MatchSet.create(match_id: i, set_number: set_num, result: result_str ))
     end
+
+end
+User.create! :name => 'John Doe', :email => 'user@user.com', :password => '123456', :password_confirmation => '123456'
+Admin.create! :name => 'John Doe', :email => 'admin@admin.com', :password => '123456', :password_confirmation => '123456'
+10.times do
+  Admin.create(
+    email: Faker::Internet.email,
+    password: "123456"
+  )
+end
+10.times do
+  User.create(
+    email: Faker::Internet.email,
+    password: "123456"
+  )
 end
